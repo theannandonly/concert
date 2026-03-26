@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -24,7 +24,7 @@
       --gold-dim   : #8C6E16;
       --cream      : #F5F0E8;
       --white      : #ffffff;
-      --font-script: 'Great Vibes', cursive;
+      --font-script: 'Pinyon Script', cursive;
       --font-body  : 'Cormorant Garamond', Georgia, serif;
       --transition : 0.4s cubic-bezier(.25,.46,.45,.94);
       --radius     : 12px;
@@ -66,9 +66,11 @@
 
     /* Logo nav : typo script, PAS de href → JS scroll */
     .nav-logo {
-      font-family:var(--font-script); font-size:1.7rem;
-      color:var(--gold); cursor:pointer; line-height:1;
-      background:none; border:none; padding:0;
+      font-family:var(--font-script); font-size:2rem; font-weight:400;
+      background: linear-gradient(160deg, #f2d96b 0%, #c9a227 35%, #e8c84a 60%, #a07818 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      cursor:pointer; line-height:1;
+      border:none; padding:0;
       transition:opacity var(--transition);
     }
     .nav-logo:hover { opacity:.75; }
@@ -130,10 +132,24 @@
       color:var(--gold); margin-bottom:1.2rem; animation:fadeUp 1s .3s both;
     }
     .hero-title {
-      font-family:var(--font-script); font-size:clamp(3.8rem,7vw,7rem);
-      line-height:1.05; color:var(--white); animation:fadeUp 1s .5s both;
+      font-family:var(--font-script);
+      font-size:clamp(2rem,3.8vw,4rem);
+      font-weight:400;
+      line-height:1.2;
+      background: linear-gradient(160deg, #f2d96b 0%, #c9a227 35%, #e8c84a 60%, #a07818 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      filter:drop-shadow(0 2px 12px rgba(201,162,39,.35));
+      animation:fadeUp 1s .5s both;
+      white-space:nowrap;
     }
-    .hero-title .gold-line { color:var(--gold); text-shadow:0 0 55px rgba(201,162,39,.45); }
+    .hero-title .gold-line {
+      background: linear-gradient(160deg, #f2d96b 0%, #c9a227 35%, #e8c84a 60%, #a07818 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
     .hero-sub {
       font-family:var(--font-body); font-size:clamp(1rem,2vw,1.2rem);
       font-style:italic; color:var(--gold-light); opacity:.85;
@@ -195,8 +211,8 @@
     #logistique::before { top:0; } #logistique::after { bottom:0; }
 
     .logistique-header { text-align:center; margin-bottom:4.5rem; }
-    .logistique-header h2 { font-family:var(--font-script); font-size:clamp(2.4rem,5vw,4rem); color:var(--white); line-height:1.15; }
-    .logistique-header h2 em { color:var(--gold); font-style:normal; }
+    .logistique-header h2 { font-family:var(--font-script); font-size:clamp(3.2rem,6vw,5.5rem); color:var(--white); line-height:1.15; }
+    .logistique-header h2 em { background:linear-gradient(160deg,#f2d96b 0%,#c9a227 35%,#e8c84a 60%,#a07818 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-style:normal; }
 
     /* Grille logistique :
        - 1re rangée : 4 cartes → grid 4 col
@@ -230,8 +246,8 @@
 
     /* ── STYLES MUSICAUX ── */
     #styles { text-align:center; background:var(--blue-dark); padding:5rem 2rem; }
-    #styles h2 { font-family:var(--font-script); font-size:clamp(2.4rem,5vw,4rem); color:var(--white); margin-bottom:3rem; }
-    #styles h2 em { color:var(--gold); font-style:normal; }
+    #styles h2 { font-family:var(--font-script); font-size:clamp(3.2rem,6vw,5.5rem); color:var(--white); margin-bottom:3rem; }
+    #styles h2 em { background:linear-gradient(160deg,#f2d96b 0%,#c9a227 35%,#e8c84a 60%,#a07818 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-style:normal; }
     .styles-badges { display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; }
     .style-badge { padding:.6rem 1.4rem; border:1px solid rgba(201,162,39,.35); border-radius:50px; font-size:1rem; color:rgba(245,240,232,.8); background:rgba(201,162,39,.05); transition:all var(--transition); }
     .style-badge:hover { border-color:var(--gold); background:rgba(201,162,39,.14); color:var(--gold); transform:scale(1.06); }
@@ -242,8 +258,8 @@
     #reservation::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
 
     .reservation-inner { display:grid; grid-template-columns:1fr 1.8fr; gap:5rem; align-items:start; }
-    .reservation-intro h2 { font-family:var(--font-script); font-size:clamp(2.4rem,4vw,3.5rem); line-height:1.15; margin-bottom:1.5rem; color:var(--white); }
-    .reservation-intro h2 em { color:var(--gold); font-style:normal; }
+    .reservation-intro h2 { font-family:var(--font-script); font-size:clamp(3rem,5vw,5rem); line-height:1.15; margin-bottom:1.5rem; color:var(--white); }
+    .reservation-intro h2 em { background:linear-gradient(160deg,#f2d96b 0%,#c9a227 35%,#e8c84a 60%,#a07818 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-style:normal; }
     .reservation-intro p { font-size:1rem; color:rgba(245,240,232,.65); margin-bottom:1rem; }
     .price-note { display:inline-block; margin-top:1.5rem; padding:1rem 1.5rem; border-left:3px solid var(--gold); background:rgba(201,162,39,.08); font-style:italic; font-size:.95rem; color:var(--gold-light); border-radius:0 var(--radius) var(--radius) 0; line-height:1.5; }
 
@@ -279,7 +295,7 @@
     footer { background:var(--blue-dark); border-top:1px solid rgba(201,162,39,.15); padding:3rem 2rem; text-align:center; }
     .footer-logo-wrap { width:150px; height:91px; border-radius:10px; overflow:hidden; border:1px solid rgba(201,162,39,.4); margin:0 auto 1rem; cursor:pointer; }
     .footer-logo-wrap img { width:100%; height:100%; object-fit:fill; }
-    .footer-name { font-family:var(--font-script); font-size:2rem; color:var(--gold); margin-bottom:.4rem; }
+    .footer-name { font-family:var(--font-script); font-weight:400; font-size:2.5rem; background:linear-gradient(160deg,#f2d96b 0%,#c9a227 35%,#e8c84a 60%,#a07818 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:.4rem; }
     .footer-sub { font-family:var(--font-body); font-size:.72rem; letter-spacing:.25em; text-transform:uppercase; color:rgba(245,240,232,.3); }
 
     /* ── RESPONSIVE ── */
@@ -336,10 +352,7 @@
 
       <p class="hero-eyebrow">Artiste Solo &nbsp;·&nbsp; Live Performance</p>
 
-      <h1 class="hero-title">
-        The Ann<br />
-        <span class="gold-line">and Only</span>
-      </h1>
+      <h1 class="hero-title">The Ann and Only</h1>
 
       <p class="hero-sub">Une soirée animée, conçue sur mesure.</p>
 
