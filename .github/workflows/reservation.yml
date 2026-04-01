@@ -1,0 +1,73 @@
+name: 📬 Nouvelle réservation
+
+on:
+  # Déclenché par un appel webhook depuis Formspree (via un Zap ou Make)
+  # OU via repository_dispatch depuis votre backend
+  repository_dispatch:
+    types: [nouvelle-reservation]
+
+jobs:
+  enregistrer-reservation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout du dépôt
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📝 Créer la fiche de réservation
+        run: |
+          DATE=$(date +"%Y-%m-%d")
+          HEURE=$(date +"%H-%M")
+          
+          # Récupère les données du payload
+          RESTO="${{ github.event.client_payload.restaurant }}"
+          ADRESSE="${{ github.event.client_payload.adresse }}"
+          TEL="${{ github.event.client_payload.telephone }}"
+          EMAIL="${{ github.event.client_payload.email }}"
+          HORAIRES="${{ github.event.client_payload.horaires }}"
+          STYLES="${{ github.event.client_payload.styles }}"
+          DATE_SOUHAITEE="${{ github.event.client_payload.date }}"
+          MESSAGE="${{ github.event.client_payload.message }}"
+          
+          # Nom de fichier sans espaces
+          FILENAME=$(echo "${DATE}_${RESTO}" | tr ' ' '-' | tr -cd '[:alnum:]-_')
+          
+          # Créer la fiche Markdown
+          cat > "reservations/${FILENAME}.md" << EOF
+          # 🎤 Fiche Réservation — ${RESTO}
+          
+          **Date de réception :** ${DATE} à ${HEURE}
+          
+          ---
+          
+          ## 🏠 Établissement
+          | Champ | Valeur |
+          |-------|--------|
+          | **Nom** | ${RESTO} |
+          | **Adresse** | ${ADRESSE} |
+          | **Téléphone** | ${TEL} |
+          | **E-mail** | ${EMAIL} |
+          | **Horaires d'ouverture** | ${HORAIRES} |
+          
+          ## 🎵 Prestation
+          | Champ | Valeur |
+          |-------|--------|
+          | **Styles choisis** | ${STYLES} |
+          | **Date souhaitée** | ${DATE_SOUHAITEE} |
+          
+          ## 💬 Message
+          ${MESSAGE}
+          
+          ---
+          *Fiche générée automatiquement — The Ann and Only*
+          EOF
+
+      - name: 💾 Commit de la fiche
+        run: |
+          git config user.name "The Ann and Only Bot"
+          git config user.email "schaerer.tom7@gmail.com"
+          git add reservations/
+          git commit -m "📬 Nouvelle réservation — ${{ github.event.client_payload.restaurant }}"
+          git push
